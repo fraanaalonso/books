@@ -1,0 +1,18 @@
+<!--Other HTML file will inherit from this one. For that reason, the underscore is so important-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title%} BookStore {% endblock title %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+
+    <div>
+        {% block content %}
+
+        {% endblock content %}
+    </div>
+
+    </body>
+</html>
