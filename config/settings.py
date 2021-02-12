@@ -57,7 +57,6 @@ INSTALLED_APPS = [
 #django-allauth config
 ACCOUNT_SESSION_REMEMBER = True
 SITE_ID = 1
-ACCOUNT_EMAIL_VERIFICATION = 'none'
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -73,6 +72,8 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
+DEFAULT_FROM_EMAIL = 'antena3@grupoatresmedia.es'
+
 #Cripsy template tag
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -163,3 +164,9 @@ STATICFILES_FINDERS = [
 ]
 
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com' #smtp i.e: stmp.gmail.com
+EMAIL_HOST_USER = 'flalonso17@esei.uvigo.es' #email del emisor
+EMAIL_HOST_PASSWORD = '' #password del emisor
+EMAIL_PORT = 587
