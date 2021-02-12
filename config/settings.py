@@ -50,11 +50,14 @@ INSTALLED_APPS = [
     'crispy_forms',
     'allauth',
     'allauth.account', #carcterística de allauth
+    'allauth.socialaccount', # new
+    'allauth.socialaccount.providers.github', # new
 ]
 
 #django-allauth config
 ACCOUNT_SESSION_REMEMBER = True
 SITE_ID = 1
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',

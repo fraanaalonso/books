@@ -1,4 +1,5 @@
 {% extends '_base.html' %}
+{% load socialaccount %}
 {% load crispy_forms_tags %}
 {% block title %} Register {% endblock title %}
 {% block content %}
@@ -10,5 +11,5 @@
     {{form|crispy}}
     <button type="submit">Sign Up</button>
 </form>
-
+<a href="{% provider_login_url 'github' %}">Sign Up with GitHub</a>
 {% endblock content %}
