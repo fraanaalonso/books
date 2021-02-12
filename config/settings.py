@@ -24,7 +24,7 @@ SECRET_KEY = 'gxeyqs4tvqr@84-9=(8m0(yxgc$fsp*iow9enw)i&t+2f$p)x$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -38,7 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'pages',
+    'crispy_forms'
 ]
+
+#Cripsy template tag
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,7 +61,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [str(BASE_DIR.join('templates'))],
+        'DIRS': [str(BASE_DIR.joinpath('templates') )],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,16 +130,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (str(BASE_DIR.join('static')),)
-STATIC_ROOT= os.path.join(BASE_DIR, "staticfiles")
+STATICFILES_DIRS = (str(BASE_DIR.joinpath('static')),)
+STATIC_ROOT= str(BASE_DIR.joinpath("staticfiles"))
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
-STATICFILES_STORAGE = [
-    'django.contrib.staticfiles.storage.StaticFilesStorage'
-]
-
 
 
 LOGIN_REDIRECT_URL = 'home'
