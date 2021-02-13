@@ -13,6 +13,12 @@ services:
     environment: 
       - "DJANGO_SECRET_KEY=gxeyqs4tvqr@84-9=(8m0(yxgc$fsp*iow9enw)i&t+2f$p)x$$"
       - "DJANGO_DEBUG=True"
+      - "DJANGO_SECURE_SSL_REDIRECT=False"
+      - "DJANGO_SECURE_HSTS_SECONDS=0"
+      - "DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS=False"
+      - "DJANGO_SECURE_HSTS_PRELOAD=False"
+      - "DJANGO_SESSION_COOKIE_SECURE=False"
+      - "DJANGO_CSRF_COOKIE_SECURE=False"
     
   db:
     image: postgres:11
