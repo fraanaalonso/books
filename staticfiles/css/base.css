@@ -1,0 +1,25 @@
+h1{
+    color: red;
+}
+
+.bookcover{
+    height: 300px;
+    width: auto;
+}
+
+input[type="submit"],
+input [type="button"],
+button {
+        padding: 10px;
+        margin-top: 5px;
+        background: green;
+        color: white;
+    }
+    
+input[type="submit"]:hover,
+input [type="button"]:hover,
+button:hover {
+        cursor: pointer;
+        background: gold;
+        transition: 300ms all;
+    }

@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'allauth.account', #carcterística de allauth
     'allauth.socialaccount', # new
     'allauth.socialaccount.providers.github', # new
+    'debug_toolbar',
 ]
 
 #django-allauth config
@@ -87,6 +88,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -175,6 +177,14 @@ MEDIA_ROOT = str(BASE_DIR.joinpath('media'))
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com' #smtp i.e: stmp.gmail.com
-EMAIL_HOST_USER = 'flalonso17@esei.uvigo.es' #email del emisor
-EMAIL_HOST_PASSWORD = '' #password del emisor
+EMAIL_HOST_USER = 'flalonso17@esei.uvigo.es' #sender
+EMAIL_HOST_PASSWORD = '' #sender pass
 EMAIL_PORT = 587
+
+
+#Django debug toolbar
+
+import socket
+#to make sure our INTERNAL_IPS matches that of our Docker host
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
