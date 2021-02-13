@@ -165,6 +165,13 @@ STATICFILES_FINDERS = [
 ]
 
 
+#Media URL
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = str(BASE_DIR.joinpath('media'))
+
+
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com' #smtp i.e: stmp.gmail.com
