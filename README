@@ -1,6 +1,10 @@
 Django project with Docker and PostgreSQL
 
-By default, a django built-in project comes with an integrated SQLite3 database and a default configuration which in most cases is unappropiated for what we want to do. In this document, I’ll set out how to configure your Django project by using the templates and settings provided by Django. Also, I’ll explain how to configure your database switching from SQLite3 to PostgreSQL and how to integrate your application in a Docker container to keep all the dependencies in the same container and make easier its future deploy.
+By default, a django built-in project comes with an integrated SQLite3 database and a default configuration which in most cases is unappropiated for what we want to do. 
+In this document, I’ll set out how to configure your Django project by using the templates and settings provided by Django. Also, I’ll explain how to configure your 
+database switching from SQLite3 to PostgreSQL and how to integrate your application in a Docker container to keep all the dependencies in the same container and make 
+easier its future deploy.
+
 •	First of all, we create the directory for our code, and then install django. Also, as we are using PostgreSQL, psycopg2 installation is needed.
   1.	mkdir directory && cd directory
   2.	pipenv install django~=3.1.0 psycopg2-binary==2.8.5
@@ -62,5 +66,5 @@ By default, a django built-in project comes with an integrated SQLite3 database 
               volumes: 
                 postgres_data:
   -----------------------------------------------------------------------------------------------------
-  directory represents tour root directory
-  folder_content is the directory that contains the Project folder
+  directory represents your root directory
+  folder_content is the directory that contains the project folder
