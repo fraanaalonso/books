@@ -1,0 +1,66 @@
+Django project with Docker and PostgreSQL
+
+By default, a django built-in project comes with an integrated SQLite3 database and a default configuration which in most cases is unappropiated for what we want to do. In this document, I’ll set out how to configure your Django project by using the templates and settings provided by Django. Also, I’ll explain how to configure your database switching from SQLite3 to PostgreSQL and how to integrate your application in a Docker container to keep all the dependencies in the same container and make easier its future deploy.
+•	First of all, we create the directory for our code, and then install django. Also, as we are using PostgreSQL, psycopg2 installation is needed.
+  1.	mkdir directory && cd directory
+  2.	pipenv install django~=3.1.0 psycopg2-binary==2.8.5
+  3.	pipenv shell
+  I’ll name the django project config
+
+  1.	django-admin startproject config . (the period is important to avoid the creation of an extra directory by Django)
+  2.	python manage.py runserver
+  3.	go to: 127.0.0.1:8000
+  4.	type exit to turn off the virtual environment
+
+•	At second, Docker’s set up is needed:
+
+  1.	To install Docker read the docs: https://docs.docker.com/get-docker/
+  2.	Create two files inside your root directory: Dockerfile and docker-compose.yml
+
+  3.	Dockerfile content:
+
+              FROM python:3.9
+
+              ENV PYTHONDONTWRITEBYTECODE 1
+              ENV PYTHONUNBUFFERED 1
+
+              WORKDIR / folder_content
+
+
+              COPY Pipfile Pipfile.lock / folder_content /
+              RUN pip install pipenv && pipenv install --system
+
+              COPY . / folder_content /
+
+  4.	Docker-compose content:
+              services: 
+                web:
+                  build: .
+                  command: python3 /folder_content/manage.py runserver 0.0.0.0:8000
+                  volumes: 
+                    - .:/code
+                  ports: 
+                    - 8000:8000
+                  depends_on: 
+                    - db
+                  environment: 
+                    - "DJANGO_SECRET_KEY=gxeyqs4tvqr@84-9=(8m0(yxgc$fsp*iow9enw)i&t+2f$p)x$$"
+                    - "DJANGO_DEBUG=True"
+                    - "DJANGO_SECURE_SSL_REDIRECT=False"
+                    - "DJANGO_SECURE_HSTS_SECONDS=0"
+                    - "DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS=False"
+                    - "DJANGO_SECURE_HSTS_PRELOAD=False"
+                    - "DJANGO_SESSION_COOKIE_SECURE=False"
+                    - "DJANGO_CSRF_COOKIE_SECURE=False"
+
+                db:
+                  image: postgres:11
+                  volumes: 
+                    - postgres_data:/var/lib/postgresql/data/
+                  environment: 
+                    - "POSTGRES_HOST_AUTH_METHOD=trust"
+              volumes: 
+                postgres_data:
+  -----------------------------------------------------------------------------------------------------
+  directory represents tour root directory
+  folder_content is the directory that contains the Project folder
